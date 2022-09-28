@@ -52,7 +52,13 @@ class Warehouse:
 	
 	# Returns the item in the warehouse with the highest price
 	def get_max_price(self):
-		pass	
+		mx_price = 0
+		mx_price_item = None
+		for item in self.items:
+			if item.price > mx_price:
+				mx_price = item.price
+				mx_price_item = item
+		return mx_price_item
 
 
 
@@ -98,6 +104,12 @@ class TestAllMethods(unittest.TestCase):
 
 	# Check to see whether the warehouse correctly return the item with the highest price
 	def test_warehouse_max_price(self):
+		Meijer = Warehouse([self.item2, self.item5])
+		mx_price = Meijer.get_max_price()
+		self.assertEqual(mx_price, self.item2)
+		Meijer.add_item(self.item1)
+		mx_price_new = Meijer.get_max_price()
+		self.assertEqual(mx_price_new, self.item1)
 		pass
 		
 
